@@ -102,16 +102,41 @@ public:
 
 int main(void)
 {
-    std::cout << "initialize -> " << INTEGER << endl;
-    Token token = Token("Hello", '!');
-    std::cout << "VAlue => " << token.value << endl;
+    // std::cout << "initialize -> " << INTEGER << endl;
+    // Token token = Token("Hello", '!');
+    // std::cout << "VAlue => " << token.value << endl;
     // token.str();
-    Interpreter inter = Interpreter("3+2");
+    // Interpreter inter = Interpreter("3+2");
     // Token token2 = inter.get_next_token();
     // std::cout << token2.type << " <- token val ->" << token2.value << endl;
     // token2 = inter.get_next_token();
     // std::cout << token2.type << " <- token val ->" << token2.value << endl;
     // token2 = inter.get_next_token();
     // std::cout << token2.type << " <- token val ->" << token2.value << endl;
-    inter.expr();
+    // inter.expr();
+
+    while (true)
+    {
+        string text;
+        try
+        {
+            cout << "Calc >";
+            cin >> text;
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << e.what() << '\n';
+            return -1;
+        }
+        if (text.empty() == true)
+        {
+            cout << "not a number";
+            continue;
+        }
+        else
+        {
+            Interpreter inter = Interpreter(text);
+            cout << inter.expr() << endl;
+        }
+    }
 }
